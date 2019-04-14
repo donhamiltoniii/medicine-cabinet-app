@@ -30,18 +30,18 @@ public class MedicationPopulator implements CommandLineRunner{
 		
 		LocalTime timeToTakeMedication = LocalTime.NOON;
 		
-		Medication pill1 = new Medication("ibuprofen", "mg", 1.1, "pill", "daily", 10, timeToTakeMedication,"instructions", primaryCare, walgreens);
-		medicationRepo.save(pill1);
-		
-		
-		Medication pill2 = new Medication("aspirin", "mg", 1.5, "pill", "daily", 20, timeToTakeMedication, "instructions", primaryCare, walgreens);
-		medicationRepo.save(pill2);
-		
-		Medication liquid = new Medication("Nyquil", "mL", 50, "liquid", "daily", 1,timeToTakeMedication, "instructions", primaryCare, walgreens);
-		medicationRepo.save(liquid);
-		
-		Medication patch = new Medication("Nicotine", "mg", 1, "patch", "weekly", 30, timeToTakeMedication, "instructions", primaryCare, walgreens);
-		medicationRepo.save(patch);
+//		Medication pill1 = new Medication("ibuprofen", "mg", 1.1, "pill", "daily", 10, timeToTakeMedication,"instructions", primaryCare, walgreens);
+//		medicationRepo.save(pill1);
+//		
+//		
+//		Medication pill2 = new Medication("aspirin", "mg", 1.5, "pill", "daily", 20, timeToTakeMedication, "instructions", primaryCare, walgreens);
+//		medicationRepo.save(pill2);
+//		
+//		Medication liquid = new Medication("Nyquil", "mL", 50, "liquid", "daily", 1,timeToTakeMedication, "instructions", primaryCare, walgreens);
+//		medicationRepo.save(liquid);
+//		
+//		Medication patch = new Medication("Nicotine", "mg", 1, "patch", "weekly", 30, timeToTakeMedication, "instructions", primaryCare, walgreens);
+//		medicationRepo.save(patch);
 	}
 
 }

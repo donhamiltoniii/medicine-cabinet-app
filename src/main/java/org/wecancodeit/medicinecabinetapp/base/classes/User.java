@@ -2,6 +2,7 @@ package org.wecancodeit.medicinecabinetapp.base.classes;
 
 import java.util.Set;
 
+import javax.management.relation.Role;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;

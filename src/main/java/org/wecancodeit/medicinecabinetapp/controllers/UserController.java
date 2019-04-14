@@ -1,5 +1,7 @@
 package org.wecancodeit.medicinecabinetapp.controllers;
 
+import java.security.Security;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.wecancodeit.medicinecabinetapp.base.classes.User;
 import org.wecancodeit.medicinecabinetapp.repositories.UserRepository;
-import org.wecancodeit.medicinecabinetapp.service.SecurityService;
-import org.wecancodeit.medicinecabinetapp.service.UserService;
-import org.wecancodeit.medicinecabinetapp.validator.UserValidator;
 
 @Controller
-public class UserController {
+public class UserController<UserService, UserValidator> {
 
 	@Resource
 	UserRepository userRepo;
@@ -26,7 +25,7 @@ public class UserController {
 	private UserService userService;
 
 	@Autowired
-	private SecurityService securityService;
+	private Security securityService;
 
 	@Autowired
 	private UserValidator userValidator;
@@ -38,20 +37,20 @@ public class UserController {
 		return "registerPage";
 	}
 
-	@PostMapping("/registration")
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-		userValidator.validate(userForm, bindingResult);
-
-		if (bindingResult.hasErrors()) {
-			return "registerPage";
-		}
-
-		userService.save(userForm);
-
-		securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
-
-		return "redirect:/welcome";
-	}
+//	@PostMapping("/registration")
+//	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+//		userValidator.validate(userForm, bindingResult);
+//
+//		if (bindingResult.hasErrors()) {
+//			return "registerPage";
+//		}
+//
+//		userService.save(userForm);
+//
+//		securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
+//
+//		return "redirect:/welcome";
+//	}
 
 	@GetMapping("/login")
 	public String login(Model model, String error, String logout) {
