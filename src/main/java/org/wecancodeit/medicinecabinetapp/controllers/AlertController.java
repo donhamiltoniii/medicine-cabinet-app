@@ -1,8 +1,5 @@
 package org.wecancodeit.medicinecabinetapp.controllers;
 
-
-
-
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -41,6 +38,5 @@ public class AlertController {
 		return("alerts");
 		
 	}
-
 
 }
