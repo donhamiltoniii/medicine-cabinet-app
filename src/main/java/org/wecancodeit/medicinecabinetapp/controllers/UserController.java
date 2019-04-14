@@ -34,7 +34,7 @@ public class UserController<UserService, UserValidator> {
 	public String registration(Model model) {
 		model.addAttribute("userForm", new User());
 
-		return "registerPage";
+		return "register";
 	}
 
 //	@PostMapping("/registration")
