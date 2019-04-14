@@ -1,20 +1,14 @@
 package org.wecancodeit.medicinecabinetapp.base.classes;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.time.LocalTime;
+
 
 
 
@@ -25,60 +19,37 @@ public class Medication {
 	@GeneratedValue
 	private long id;
 	
-
 	private String medicationName;
 	private String dosageUnits;
 	private double dosageAmount;
 	private String medicationType;
-	private String frequency;
-	private String instructions;
+	private int frequency;
 	private int count;
-
-
-	private String alert;
-    
-    
-    @ManyToOne
-    private String user;
-
-   
-	private LocalTime timeToTakeMedication;
 	
-	@OneToOne
-	private Doctor doctor;
 	
-	@OneToOne
-	private Pharmacy pharmacy;
 	
 	@ManyToMany
 	private Collection <Alert> alerts;
 	
+		//medication Time?
+		//pharmacy id- many medications to many pharmacies
+		//user id- many medications to one user
 		
-		//will have to work on relationships between med-pharm and med-doc
-
 	
 	public Medication () {
-
+		
 	}
 	
-
-
 	
-	public Medication(String medicationName, String dosageUnits, double dosageAmount, String medicationType, String frequency, int count, LocalTime timeToTakeMedication, String instructions, Doctor doctor, Pharmacy pharmacy, Alert...alerts) {
+	public Medication(String medicationName, String dosageUnits, double dosageAmount, String medicationType, int frequency, int count, Alert...alerts) {
 		this.medicationName = medicationName;
 		this.dosageUnits = dosageUnits;
 		this.dosageAmount = dosageAmount;
 		this.medicationType = medicationType;
 		this.frequency = frequency;
 		this.count = count;
-  	    this.timeToTakeMedication = timeToTakeMedication;
-		this.instructions = instructions;
-		this.doctor = doctor;
-		this.pharmacy = pharmacy;
 		this.alerts = new HashSet<>(Arrays.asList(alerts));
 		
-
-		List<Medication> medications = new ArrayList<Medication>();
 	}
 	
 	public long getId() {
@@ -89,7 +60,7 @@ public class Medication {
 		return medicationName;
 	
 	}
-
+	
 	public String getDosageUnits() {
 		return dosageUnits;
 	}
@@ -102,8 +73,7 @@ public class Medication {
 		return medicationType;
 	}
 	
-	public String getFrequency() {
-
+	public int getFrequency() {
 		return frequency;
 	}
 	
@@ -111,29 +81,8 @@ public class Medication {
 		return count;
 	}
 	
-	public String availableMeds() {
-		return getMedicationName();
-	}
-
-	
-	public LocalTime getTimeToTakeMedication() {
-		return timeToTakeMedication;
-	}
-	
-	public String getInstructions() {
-		return instructions;
-	}
-	
 	public Collection <Alert> getAlerts(){
 		return alerts;
-	}
-	
-	public Object getDoctor() {		
-		return doctor;
-	}
-	
-	public Object getPharmacy() {
-		return pharmacy;
 	}
 
 	@Override
@@ -158,7 +107,9 @@ public class Medication {
 		return true;
 	}
 
-	
 
+	
+	
+	
 
 }
