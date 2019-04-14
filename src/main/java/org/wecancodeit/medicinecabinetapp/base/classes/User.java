@@ -31,8 +31,7 @@ public class User {
 @Transient
 private String passwordConfirm;
 
-@ManyToMany
-private Set<Role> roles;
+
 	
 	public User () {
 		
@@ -106,13 +105,7 @@ private Set<Role> roles;
 		this.passwordConfirm=passwordConfirm;
 	}
 	
-	public Set<Role> getRoles(){
-		return roles;
-	}
 	
-	public void setRoles(Set<Role> roles) {
-		this.roles=roles;
-	}
 
 }
 
