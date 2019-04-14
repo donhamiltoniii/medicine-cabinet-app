@@ -1,11 +1,7 @@
 package org.wecancodeit.medicinecabinetapp.base.classes;
 
 
-
-
-
 import java.time.LocalDateTime; 
-
 
 
 
