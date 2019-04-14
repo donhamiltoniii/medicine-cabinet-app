@@ -108,20 +108,6 @@ public class Medication {
 	}
 
 
-	public String getDoctor() {
-		// TODO Auto-generated method stub
-		return getDoctor();
-	}
-
-
-	public String getPharmacy() {
-		// TODO Auto-generated method stub
-		return getPharmacy();
-	}
-
-
-
-
 	
 	
 	
