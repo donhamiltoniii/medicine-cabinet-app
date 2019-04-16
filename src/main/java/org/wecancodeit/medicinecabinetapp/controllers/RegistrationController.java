@@ -12,8 +12,15 @@ public class RegistrationController {
 	@Resource
 	RegistrationRepository registrationRepo; 
 
+<<<<<<< HEAD
 	@RequestMapping("/register")
 	public String registerPage(Model model) {
 		return "registerPage";
 	}
+=======
+//	@RequestMapping("/register")
+//	public String registerPage(Model model) {
+//		return "registerPage";
+//	}
+>>>>>>> adriennebranch
 }
