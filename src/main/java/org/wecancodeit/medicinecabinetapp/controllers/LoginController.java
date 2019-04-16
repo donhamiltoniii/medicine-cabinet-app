@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 	
-	
-  
-<<<<<<< HEAD
+
   @RequestMapping(value = "/user-login", method = RequestMethod.GET)
   public String loginPage(Model model) {
 	  return "user-login";
@@ -22,9 +20,7 @@ public class LoginController {
   public String loginSuccessful(Model model) {
 	  return "loginSuccessful";
   }
- 
-		  
-=======
+
 //  @RequestMapping(value = "/user-login", method = RequestMethod.GET)
 //  public String loginPage(Model model) {
 //	  return "user-login";
@@ -36,7 +32,7 @@ public class LoginController {
 //  }
 // 
 //		  
->>>>>>> adriennebranch
+
 
 		 
 }
