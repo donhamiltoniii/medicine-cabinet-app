@@ -1,6 +1,7 @@
 package org.wecancodeit.medicinecabinetapp.base.classes;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,7 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+
 import org.springframework.data.annotation.Transient;
+import org.springframework.mail.SimpleMailMessage;
+import org.wecancodeit.medicinecabinetapp.password.PasswordResetToken;
+import org.wecancodeit.medicinecabinetapp.repositories.PasswordTokenRepository;
 
 @Entity
 public class User {
@@ -113,4 +118,29 @@ private Set<Role> roles;
 		this.roles=roles;
 	}
 
+	public void createPasswordResetTokenForUser(User user, String token) {
+        PasswordResetToken myToken = new PasswordResetToken(token, user);
+        PasswordTokenRepository.save(myToken);
+    }
+    
+    private SimpleMailMessage constructResetTokenEmail(
+    		  String contextPath, Locale locale, String token, User user) {
+    		    String url = contextPath + "/user/changePassword?id=" + 
+    		      user.getId() + "&token=" + token;
+    		    String message = message.getMessage("message.resetPassword", 
+    		      null, locale);
+    		    return constructEmail("Reset Password", message + " \r\n" + url, user);
+    		}
+    		 
+    		private SimpleMailMessage constructEmail(String subject, String body, 
+    		  User user) {
+    		    SimpleMailMessage email = new SimpleMailMessage();
+    		    email.setSubject(subject);
+    		    email.setText(body);
+    		    email.setTo(user.getUserEmail());
+    		    email.setFrom(env.getProperty("support.email"));
+    		    return email;
+    		}
+
+	
 }

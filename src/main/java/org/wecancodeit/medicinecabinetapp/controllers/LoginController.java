@@ -1,7 +1,5 @@
 package org.wecancodeit.medicinecabinetapp.controllers;
 
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +18,12 @@ public class LoginController {
   public String loginSuccessful(Model model) {
 	  return "loginSuccessful";
   }
+  
+//  @RequestMapping(value = "/user/resetPassword", method = RequestMethod.POST) 
+//	  public String forgotPassword(Model model) {
+//		return "forgotPassword";
+//  }
+
 
 //  @RequestMapping(value = "/user-login", method = RequestMethod.GET)
 //  public String loginPage(Model model) {

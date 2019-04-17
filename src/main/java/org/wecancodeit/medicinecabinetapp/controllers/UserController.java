@@ -1,8 +1,14 @@
 package org.wecancodeit.medicinecabinetapp.controllers;
 
+import java.util.Locale;
+import java.util.UUID;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.wecancodeit.medicinecabinetapp.base.classes.User;
+import org.wecancodeit.medicinecabinetapp.password.GenericResponse;
 import org.wecancodeit.medicinecabinetapp.repositories.UserRepository;
 import org.wecancodeit.medicinecabinetapp.service.SecurityService;
 import org.wecancodeit.medicinecabinetapp.service.UserService;
@@ -93,5 +103,35 @@ public class UserController {
 		return "redirect:/goodbye";
 
 	}
+	
+	@RequestMapping(value = "/user/resetPassword", 
+            method = RequestMethod.POST)
+	  @ResponseBody
+		public GenericResponse resetPassword(HttpServletRequest request, 
+       @RequestParam("email") String userEmail) {
+         User user = userService.findUserByEmail(userEmail);
+          if (user == null) {
+            throw new UserNotFoundException();
+}
+      String token = UUID.randomUUID().toString();
+       userService.createPasswordResetTokenForUser(user, token);
+         MailSender.send(constructResetTokenEmail(getAppUrl(request), 
+          request.getLocale(), token, user));
+         return new GenericResponse(
+             messages.getMessage("message.resetPasswordEmail", null, 
+                    request.getLocale()));
+	}
+	
 
+	@RequestMapping(value = "/user/changePassword", method = RequestMethod.GET)
+	public String showChangePasswordPage(Locale locale, Model model, 
+	  @RequestParam("id") long id, @RequestParam("token") String token) {
+	    String result = securityService.validatePasswordResetToken(id, token);
+	    if (result != null) {
+	        model.addAttribute("message", 
+	          messages.getMessage("auth.message." + result, null, locale));
+	        return "redirect:/login?lang=" + locale.getLanguage();
+	    }
+	    return "redirect:/updatePassword.html?lang=" + locale.getLanguage();
+	}
 }
