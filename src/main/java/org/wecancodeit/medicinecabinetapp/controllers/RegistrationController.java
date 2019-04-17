@@ -13,14 +13,13 @@ public class RegistrationController {
 	RegistrationRepository registrationRepo; 
 
 
-	@RequestMapping("/register")
-	public String registerPage(Model model) {
-		return "registerPage";
+//	@RequestMapping("/register")
+//	public String registerPage(Model model) {
+//		return "registerPage";
 
 //	@RequestMapping("/register")
 //	public String registerPage(Model model) {
 //		return "registerPage";
 //	}
 
-}
 }

@@ -1,13 +1,7 @@
 package org.wecancodeit.medicinecabinetapp.base.classes;
 
-
-import java.util.Set;
-
-import javax.management.relation.Role;
-
 import java.util.HashSet;
 import java.util.Set;
-
 
 import javax.persistence.Entity;
 
@@ -19,8 +13,6 @@ import javax.persistence.Table;
 import org.springframework.data.annotation.Transient;
 
 @Entity
-
-@Table(name="user")
 public class User {
 	
 	@Id
@@ -37,7 +29,6 @@ public class User {
 	
 @Transient
 private String passwordConfirm;
-
 
 @ManyToMany
 private Set<Role> roles;
@@ -114,7 +105,6 @@ private Set<Role> roles;
 		this.passwordConfirm=passwordConfirm;
 	}
 	
-
 	public Set<Role> getRoles(){
 		return roles;
 	}
@@ -123,8 +113,4 @@ private Set<Role> roles;
 		this.roles=roles;
 	}
 
-
 }
-
-
-
